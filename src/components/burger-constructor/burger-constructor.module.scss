@@ -1,0 +1,155 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px;
+  margin-top: 0;
+  padding-top: 100px;
+  overflow: visible;
+}
+
+.constructor {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+  width: 100%;
+  overflow: visible;
+}
+
+.constructorElements {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+  width: 100%;
+  padding-left: 10px;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.bun {
+  margin-left: 0;
+  display: flex;
+  align-items: center;
+  background: #1C1C21;
+  border-radius: 88px 88px 40px 40px;
+  padding: 16px 24px;
+  max-width: 568px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.bunBottom {
+  border-radius: 40px 40px 88px 88px;
+}
+
+.filling {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 464px;
+  overflow-y: auto;
+  padding-right: 8px;
+  width: 100%;
+  overflow-x: visible;
+}
+
+.scrollArea {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: calc(100vh - 655px);
+  overflow-y: auto;
+  padding-right: 8px;
+  width: 100%;
+  margin-left: 0;
+  overflow-x: visible;
+}
+
+.filling::-webkit-scrollbar,
+.scrollArea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.filling::-webkit-scrollbar-track,
+.scrollArea::-webkit-scrollbar-track {
+  background: #2F2F37;
+}
+
+.filling::-webkit-scrollbar-thumb,
+.scrollArea::-webkit-scrollbar-thumb {
+  background: #8585AD;
+  border-radius: 3px;
+}
+
+.ingredient {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  cursor: grab;
+  background: #1C1C21;
+  border-radius: 40px;
+  padding: 12px 12px 12px 12px;
+  max-width: 568px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.dragIcon {
+  cursor: grab;
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+
+.ingredientDetails {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.ingredientName {
+  flex-grow: 1;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  max-height: 72px;
+  font-size: 16px;
+  line-height: 24px;
+  padding-right: 4px;
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  margin-left: auto;
+  padding-left: 4px;
+}
+
+.order {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.total {
+  align-self: flex-end;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.price span {
+  font-size: 48px;
+  line-height: 36px;
+}
