@@ -1,14 +1,13 @@
 import PropTypes from 'prop-types';
 import { ConstructorElement, Button, CurrencyIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-constructor.module.scss';
+import { IngredientType } from '@utils/types';
 
 export const BurgerConstructor = ({ ingredients }) => {
   
   const bun = ingredients.find(item => item.type === 'bun');
   
-  
   const fillings = ingredients.filter(item => item.type !== 'bun').slice(0, 5);
-  
   
   const totalPrice = 444;
   
@@ -69,22 +68,7 @@ export const BurgerConstructor = ({ ingredients }) => {
 };
 
 BurgerConstructor.propTypes = {
-  ingredients: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      type: PropTypes.oneOf(['bun', 'main', 'sauce']).isRequired,
-      proteins: PropTypes.number.isRequired,
-      fat: PropTypes.number.isRequired,
-      carbohydrates: PropTypes.number.isRequired,
-      calories: PropTypes.number.isRequired,
-      price: PropTypes.number.isRequired,
-      image: PropTypes.string.isRequired,
-      image_mobile: PropTypes.string.isRequired,
-      image_large: PropTypes.string.isRequired,
-      __v: PropTypes.number.isRequired,
-    })
-  ).isRequired,
+  ingredients: PropTypes.arrayOf(IngredientType).isRequired,
 };
 
 export default BurgerConstructor;
