@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.image {
+  width: 480px;
+  height: 240px;
+  object-fit: contain;
+  margin-bottom: 16px;
+}
+
+.name {
+  text-align: center;
+  font-family: 'JetBrains Mono', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  margin: 0 0 32px;
+  padding: 0;
+  width: 520px;
+  color: #F2F2F3;
+}
+
+.nutritionFacts {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 516px;
+  margin: 0;
+  padding: 0;
+}
+
+.nutritionItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.nutritionLabel {
+  font-family: 'JetBrains Mono', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: #8585AD;
+  margin: 0;
+  padding: 0;
+}
+
+.nutritionValue {
+  font-family: 'Iceland', Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 24px;
+  text-align: center;
+  color: #8585AD;
+  margin: 0;
+  padding: 0;
+}

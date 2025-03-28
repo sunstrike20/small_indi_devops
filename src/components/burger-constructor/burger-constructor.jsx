@@ -3,7 +3,7 @@ import { ConstructorElement, Button, CurrencyIcon, DragIcon } from '@ya.praktiku
 import styles from './burger-constructor.module.scss';
 import { IngredientType } from '@utils/types';
 
-export const BurgerConstructor = ({ ingredients }) => {
+export const BurgerConstructor = ({ ingredients, onOrderClick }) => {
   
   const bun = ingredients.find(item => item.type === 'bun');
   
@@ -59,7 +59,12 @@ export const BurgerConstructor = ({ ingredients }) => {
           <span className="text text_type_digits-medium">{totalPrice}</span>
           <CurrencyIcon type="primary" />
         </div>
-        <Button htmlType="button" type="primary" size="large">
+        <Button 
+          htmlType="button" 
+          type="primary" 
+          size="large"
+          onClick={onOrderClick}
+        >
           Оформить заказ
         </Button>
       </div>
@@ -69,6 +74,7 @@ export const BurgerConstructor = ({ ingredients }) => {
 
 BurgerConstructor.propTypes = {
   ingredients: PropTypes.arrayOf(IngredientType).isRequired,
+  onOrderClick: PropTypes.func.isRequired
 };
 
 export default BurgerConstructor;

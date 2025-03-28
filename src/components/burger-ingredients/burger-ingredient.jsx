@@ -4,7 +4,7 @@ import { Tab, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-compo
 import styles from './burger-ingredients.module.scss';
 import { IngredientType } from '@utils/types';
 
-const BurgerIngredients = ({ ingredients }) => {
+const BurgerIngredients = ({ ingredients, onIngredientClick }) => {
   const [current, setCurrent] = useState('bun');
   
   const bunRef = useRef(null);
@@ -45,7 +45,11 @@ const BurgerIngredients = ({ ingredients }) => {
             {ingredients
               .filter(item => item.type === 'bun')
               .map(item => (
-                <div key={item._id} className={styles.card}>
+                <div 
+                  key={item._id} 
+                  className={styles.card}
+                  onClick={() => onIngredientClick(item)}
+                >
                   <img src={item.image} alt={item.name} />
                   <div className={styles.price}>
                     <span className="text text_type_digits-default">{item.price}</span>
@@ -63,7 +67,11 @@ const BurgerIngredients = ({ ingredients }) => {
             {ingredients
               .filter(item => item.type === 'sauce')
               .map(item => (
-                <div key={item._id} className={styles.card}>
+                <div 
+                  key={item._id} 
+                  className={styles.card}
+                  onClick={() => onIngredientClick(item)}
+                >
                   <img src={item.image} alt={item.name} />
                   <div className={styles.price}>
                     <span className="text text_type_digits-default">{item.price}</span>
@@ -81,7 +89,11 @@ const BurgerIngredients = ({ ingredients }) => {
             {ingredients
               .filter(item => item.type === 'main')
               .map(item => (
-                <div key={item._id} className={styles.card}>
+                <div 
+                  key={item._id} 
+                  className={styles.card}
+                  onClick={() => onIngredientClick(item)}
+                >
                   <img src={item.image} alt={item.name} />
                   <div className={styles.price}>
                     <span className="text text_type_digits-default">{item.price}</span>
@@ -99,6 +111,7 @@ const BurgerIngredients = ({ ingredients }) => {
 
 BurgerIngredients.propTypes = {
   ingredients: PropTypes.arrayOf(IngredientType).isRequired,
+  onIngredientClick: PropTypes.func.isRequired
 };
 
 export default BurgerIngredients;
