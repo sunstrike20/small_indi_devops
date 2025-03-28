@@ -26,10 +26,6 @@ export const App = () => {
                 return res.json();
             })
             .then(data => {
-                // Добавлена искусственная задержка для проверки работы крутилки
-                return new Promise(resolve => setTimeout(() => resolve(data), 1000));
-            })
-            .then(data => {
                 setIngredients(data.data);
                 setIngredientsStatus('done');
             })
@@ -39,7 +35,6 @@ export const App = () => {
             });
     }, []);
 
-    // Обработчики для модальных окон
     const handleIngredientClick = (ingredient) => {
         setSelectedIngredient(ingredient);
     };
@@ -83,7 +78,6 @@ export const App = () => {
                 </div>
             </main>
 
-            {/* Модальные окна */}
             {selectedIngredient && (
                 <Modal title="Детали ингредиента" onClose={handleCloseModal}>
                     <IngredientDetails ingredient={selectedIngredient} />
