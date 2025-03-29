@@ -5,7 +5,7 @@ import { ModalOverlay } from '../modal-overlay/modal-overlay';
 import PropTypes from 'prop-types';
 import styles from './modal.module.scss';
 
-const modalRoot = document.getElementById('root');
+const modalRoot = document.getElementById('modals');
 
 export const Modal = ({ children, title, onClose }) => {
   useEffect(() => {
