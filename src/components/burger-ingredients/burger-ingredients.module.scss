@@ -1,0 +1,151 @@
+.ingredientsList {
+    max-height: 500px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #8585ad #2f2f37;
+  }
+  
+  .ingredientsList::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .ingredientsList::-webkit-scrollbar-track {
+    background: #2f2f37;
+  }
+  
+  .ingredientsList::-webkit-scrollbar-thumb {
+    background: #8585ad;
+  }
+@media (max-width: 768px) {
+    .ingredientsList {
+      max-height: 300px;
+    }
+  }
+
+.section {
+    width: 100%;
+    max-width: 580px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    padding-top: 40px;
+}
+
+.title {
+    margin-bottom: 20px;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.tabContent {
+    overflow-y: auto;
+    max-height: calc(100vh - 350px);
+    padding-right: 8px;
+}
+
+.tabContent::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tabContent::-webkit-scrollbar-track {
+    background: #2F2F37;
+}
+
+.tabContent::-webkit-scrollbar-thumb {
+    background: #8585AD;
+    border-radius: 3px;
+}
+
+.ingredientsContainer {
+    height: calc(100vh - 300px);
+    overflow-y: scroll;
+    padding-right: 8px;
+}
+
+.ingredientsContainer::-webkit-scrollbar {
+    width: 8px;
+}
+
+.ingredientsContainer::-webkit-scrollbar-track {
+    background: #2F2F37;
+}
+
+.ingredientsContainer::-webkit-scrollbar-thumb {
+    background: #8585AD;
+    border-radius: 3px;
+}
+
+.category {
+    margin-bottom: 40px;
+}
+
+.categoryTitle {
+    margin-bottom: 24px;
+}
+
+.items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    width: 100%;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 24px;
+    width: 100%;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+
+.card img {
+    width: 240px;
+    height: 120px;
+    object-fit: contain;
+}
+
+.price {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0;
+    font-family: 'Iceland', sans-serif;
+    font-size: 28px;
+    line-height: 24px;
+}
+
+.name {
+    min-height: 48px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    background: #4C4CFF;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Iceland', sans-serif;
+    font-size: 28px;
+    line-height: 24px;
+    color: #F2F2F3;
+}

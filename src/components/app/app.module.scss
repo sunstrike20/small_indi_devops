@@ -1,0 +1,75 @@
+.logo {
+    height: 5em;
+    width: auto;
+    padding: 1.5em;
+    will-change: filter;
+}
+.logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react {
+    animation: logo-spin infinite 20s linear;
+}
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+}
+.card {
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #131316;
+}
+
+.main {
+    flex-grow: 1;
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    margin-left: calc(48% - 615px);
+    margin-right: calc(48% - 585px);
+    display: flex;
+    gap: 40px;
+    justify-content: space-between;
+    padding: 0 20px;
+    overflow: visible;
+}
+
+.centerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 90px); 
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+.loadingText {
+    margin-top: 20px;
+    font-size: 24px;
+    font-family: 'JetBrains Mono', Arial, sans-serif;
+    line-height: 30px;
+    color: #F2F2F3;
+}
+
+
+.errorText {
+    margin-top: 20px;
+    font-size: 24px;
+    font-family: 'JetBrains Mono', Arial, sans-serif;
+    line-height: 30px;
+    color: #FF0000;
+}

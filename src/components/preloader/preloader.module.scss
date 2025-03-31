@@ -1,0 +1,25 @@
+.preloaderContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 90px);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.loadingText {
+  margin-top: 20px;
+  font-size: 24px;
+  font-family: 'JetBrains Mono', Arial, sans-serif;
+  line-height: 30px;
+  color: #F2F2F3;
+}
+
+.errorText {
+  margin-top: 20px;
+  font-size: 24px;
+  font-family: 'JetBrains Mono', Arial, sans-serif;
+  line-height: 30px;
+  color: #FF0000;
+}
