@@ -1,4 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import { AppHeader } from '@components/app-header/app-header';
 import BurgerIngredients from '../burger-ingredients/burger-ingredient';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
@@ -7,46 +10,45 @@ import { IngredientDetails } from '../ingredient-details/ingredient-details';
 import { OrderDetails } from '../order-details/order-details';
 import { Preloader } from '../preloader/preloader';
 import styles from './app.module.scss';
-
-const API_URL = 'https://norma.nomoreparties.space/api/ingredients';
+import { fetchIngredients, selectIngredients, selectIngredientsLoading, selectIngredientsError } from '@services/ingredients/ingredientsSlice';
+import { selectCurrentIngredient, clearCurrentIngredient } from '@services/ingredient-details/ingredientDetailsSlice';
+import { selectOrder, clearOrder } from '@services/order/orderSlice';
 
 export const App = () => {
-    const [ingredients, setIngredients] = useState([]);
-    const [status, setIngredientsStatus] = useState('loading');
-    const [selectedIngredient, setSelectedIngredient] = useState(null);
-    const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+    const dispatch = useDispatch();
+    const ingredients = useSelector(selectIngredients) || [];
+    const loading = useSelector(selectIngredientsLoading) || false;
+    const error = useSelector(selectIngredientsError);
+    const selectedIngredient = useSelector(selectCurrentIngredient);
+    const order = useSelector(selectOrder);
     
     useEffect(() => {
-        setIngredientsStatus('loading');
-        fetch(API_URL)
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`HTTP error! Status: ${res.status}`);
-                }
-                return res.json();
-            })
-            .then(data => {
-                setIngredients(data.data);
-                setIngredientsStatus('done');
-            })
-            .catch((error) => {
-                setIngredientsStatus('error');
-                console.log(error);
-            });
-    }, []);
+        dispatch(fetchIngredients());
+    }, [dispatch]);
 
-    const handleIngredientClick = (ingredient) => {
-        setSelectedIngredient(ingredient);
-    };
+    useEffect(() => {
+        // Проверяем, загружены ли ингредиенты
+        if (!ingredients || ingredients.length === 0) {
+            dispatch(fetchIngredients());
+        }
+    }, [dispatch, ingredients]);
+
+    useEffect(() => {
+        if (ingredients.length > 0) {
+            console.log('Loaded ingredients:', ingredients);
+        }
+    }, [ingredients]);
 
     const handleCloseModal = () => {
-        setSelectedIngredient(null);
-        setIsOrderModalOpen(false);
+        if (selectedIngredient) {
+            dispatch(clearCurrentIngredient());
+        }
+        if (order) {
+            dispatch(clearOrder());
+        }
     };
 
-    const handleOrderClick = () => {
-        setIsOrderModalOpen(true);
-    };
+    const status = loading ? 'loading' : error ? 'error' : 'done';
 
     return (
         <div className={styles.app}>
@@ -64,16 +66,10 @@ export const App = () => {
                         />
                     )}
                     {status === 'done' && (
-                        <>
-                            <BurgerIngredients 
-                                ingredients={ingredients} 
-                                onIngredientClick={handleIngredientClick} 
-                            />
-                            <BurgerConstructor 
-                                ingredients={ingredients}
-                                onOrderClick={handleOrderClick} 
-                            />
-                        </>
+                        <DndProvider backend={HTML5Backend}>
+                            <BurgerIngredients ingredients={ingredients} />
+                            <BurgerConstructor />
+                        </DndProvider>
                     )}
                 </div>
             </main>
@@ -84,9 +80,9 @@ export const App = () => {
                 </Modal>
             )}
 
-            {isOrderModalOpen && (
+            {order && (
                 <Modal title="" onClose={handleCloseModal}>
-                    <OrderDetails />
+                    <OrderDetails order={order} />
                 </Modal>
             )}
         </div>

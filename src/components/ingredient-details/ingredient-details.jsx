@@ -1,18 +1,19 @@
-import styles from './ingredient-details.module.scss';
+import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './ingredient-details.module.scss';
 import { IngredientType } from '@utils/types';
 
 export const IngredientDetails = ({ ingredient }) => {
+  // Проверка наличия ингредиента
+  if (!ingredient) {
+    return <p className="text text_type_main-medium">Данные ингредиента не найдены</p>;
+  }
+
   return (
     <div className={styles.container}>
-      <img
-        src={ingredient.image_large}
-        alt={ingredient.name}
-        className={styles.image}
-      />
-      <h3 className={styles.name}>
-        {ingredient.name}
-      </h3>
+      <img src={ingredient.image_large} alt={ingredient.name} className={styles.image} />
+      <h3 className={`${styles.name} text text_type_main-medium`}>{ingredient.name}</h3>
+      
       <div className={styles.nutritionFacts}>
         <div className={styles.nutritionItem}>
           <p className={styles.nutritionLabel}>Калории,ккал</p>
@@ -36,5 +37,5 @@ export const IngredientDetails = ({ ingredient }) => {
 };
 
 IngredientDetails.propTypes = {
-  ingredient: IngredientType.isRequired,
+  ingredient: IngredientType
 };

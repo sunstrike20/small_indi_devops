@@ -29,23 +29,29 @@
 
 .nutritionFacts {
   display: flex;
-  gap: 20px;
+  flex-direction: row;
   justify-content: space-between;
-  width: 100%;
-  max-width: 516px;
-  margin: 0;
+  align-items: center;
   padding: 0;
+  gap: 20px;
+  width: 516px;
+  height: 56px;
 }
 
 .nutritionItem {
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
+  padding: 0;
   gap: 8px;
-  flex: 1;
+  width: 120px;
+  height: 56px;
 }
 
 .nutritionLabel {
+  width: 100%;
+  height: 24px;
   font-family: 'JetBrains Mono', Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -58,12 +64,17 @@
 }
 
 .nutritionValue {
+  width: 100%;
+  height: 24px;
   font-family: 'Iceland', Arial, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 28px;
   line-height: 24px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #8585AD;
   margin: 0;
   padding: 0;
