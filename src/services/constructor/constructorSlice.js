@@ -1,6 +1,5 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
 
-
 let uuidv4;
 try {
   const { v4 } = require('uuid');
@@ -10,6 +9,7 @@ try {
   uuidv4 = () => Math.random().toString(36).substr(2, 9);
 }
 
+export const generateUuid = uuidv4;
 
 const initialState = {
   bun: null,
@@ -29,11 +29,7 @@ function createSafeConstructorReducer() {
         if (!Array.isArray(state.ingredients)) {
           state.ingredients = [];
         }
-        
-        state.ingredients.push({
-          ...action.payload,
-          uuid: uuidv4()
-        });
+        state.ingredients.push(action.payload);
       },
       
       removeIngredient: (state, action) => {
@@ -64,32 +60,26 @@ function createSafeConstructorReducer() {
       }
     }
   });
-  
 
   return (state, action) => {
-
     if (state === undefined) {
       return initialState;
     }
     
     if (typeof state === 'function') {
-      console.log('⚠️ Encountered function state during Redux processing, returning fresh initial state');
       return { ...initialState };
     }
     
     if (!state.ingredients) {
-      console.log('⚠️ Incomplete state structure detected, rebuilding state');
       return {
         ...initialState,
         ...state,
       };
     }
-    
 
     return slice.reducer(state, action);
   };
 }
-
 
 const constructorSlice = createSlice({
   name: 'constructor',
@@ -103,11 +93,7 @@ const constructorSlice = createSlice({
       if (!Array.isArray(state.ingredients)) {
         state.ingredients = [];
       }
-      
-      state.ingredients.push({
-        ...action.payload,
-        uuid: uuidv4()
-      });
+      state.ingredients.push(action.payload);
     },
     
     removeIngredient: (state, action) => {

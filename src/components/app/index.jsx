@@ -10,13 +10,12 @@ import { IngredientDetails } from '../ingredient-details/ingredient-details';
 import { OrderDetails } from '../order-details/order-details';
 import { Preloader } from '../preloader/preloader';
 import styles from './app.module.scss';
-import { fetchIngredients, selectIngredients, selectIngredientsLoading, selectIngredientsError } from '@services/ingredients/ingredientsSlice';
+import { fetchIngredients, selectIngredientsLoading, selectIngredientsError } from '@services/ingredients/ingredientsSlice';
 import { selectCurrentIngredient, clearCurrentIngredient } from '@services/ingredient-details/ingredientDetailsSlice';
 import { selectOrder, clearOrder } from '@services/order/orderSlice';
 
 export const App = () => {
     const dispatch = useDispatch();
-    const ingredients = useSelector(selectIngredients) || [];
     const loading = useSelector(selectIngredientsLoading) || false;
     const error = useSelector(selectIngredientsError);
     const selectedIngredient = useSelector(selectCurrentIngredient);
@@ -25,19 +24,6 @@ export const App = () => {
     useEffect(() => {
         dispatch(fetchIngredients());
     }, [dispatch]);
-
-    useEffect(() => {
-        // Проверяем, загружены ли ингредиенты
-        if (!ingredients || ingredients.length === 0) {
-            dispatch(fetchIngredients());
-        }
-    }, [dispatch, ingredients]);
-
-    useEffect(() => {
-        if (ingredients.length > 0) {
-            console.log('Loaded ingredients:', ingredients);
-        }
-    }, [ingredients]);
 
     const handleCloseModal = () => {
         if (selectedIngredient) {
@@ -67,7 +53,7 @@ export const App = () => {
                     )}
                     {status === 'done' && (
                         <DndProvider backend={HTML5Backend}>
-                            <BurgerIngredients ingredients={ingredients} />
+                            <BurgerIngredients />
                             <BurgerConstructor />
                         </DndProvider>
                     )}

@@ -10,7 +10,8 @@ import {
   moveIngredient as moveIngredientAction,
   selectBun, 
   selectIngredients, 
-  selectTotalPrice 
+  selectTotalPrice,
+  generateUuid
 } from '@services/constructor/constructorSlice';
 import { createOrder } from '@services/order/orderSlice';
 import DraggableConstructorElement from './draggable-constructor-element';
@@ -21,38 +22,22 @@ export const BurgerConstructor = () => {
   const ingredients = useSelector(selectIngredients);
   const totalPrice = useSelector(selectTotalPrice);
   
-  // DEBUG: Логгируем текущее состояние constructor
-  const constructorState = useSelector(state => {
-    console.log('Constructor state type:', typeof state.constructor);
-    return state.constructor;
-  });
+  const constructorState = useSelector(state => state.constructor);
   
-  // Если состояние constructor является функцией, инициализируем его
   React.useEffect(() => {
     if (typeof constructorState === 'function') {
-      console.log('🔄 Attempting to initialize constructor state');
-      // Инициализация пустым действием
       dispatch({ type: 'constructor/init' });
     }
   }, [dispatch, constructorState]);
   
-  // Улучшенный обработчик drop - УБИРАЕМ ссылку на store
   const [{ isHover }, dropTarget] = useDrop({
     accept: ['bun', 'ingredient'],
-    hover(item, monitor) {
-      console.log('Hovering with item:', item);
-    },
     drop(item, monitor) {
       try {
-        // Проверяем полноту данных
-        console.log('📦 Drop item:', item);
-        
         if (!item || !item._id || !item.name || !item.price || !item.image) {
-          console.error('❌ Incomplete ingredient data:', item);
           return { dropped: false };
         }
         
-        // Создаем очищенный объект - только необходимые поля
         const safeItem = {
           _id: item._id,
           name: item.name,
@@ -62,17 +47,16 @@ export const BurgerConstructor = () => {
         };
         
         if (item.type === 'bun') {
-          console.log('🍞 Dispatching setBun with:', safeItem);
           dispatch(setBun(safeItem));
         } else {
-          console.log('🥩 Dispatching addIngredient with:', safeItem);
-          dispatch(addIngredient(safeItem));
+          dispatch(addIngredient({
+            ...safeItem,
+            uuid: generateUuid()
+          }));
         }
         
-        console.log('✅ Dispatch completed');
         return { dropped: true };
       } catch (error) {
-        console.error('❌ Error in drop handler:', error);
         return { dropped: false };
       }
     },
@@ -101,7 +85,6 @@ export const BurgerConstructor = () => {
     dispatch(moveIngredientAction({ dragIndex, hoverIndex }));
   }, [dispatch]);
   
-  // Мемоизация для предотвращения ненужных перерисовок
   const orderContent = useMemo(() => {
     return (
       <>

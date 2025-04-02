@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { clearConstructor } from '../constructor/constructorSlice';
+import { request } from '@utils/api';
 
 const initialState = {
   order: null,
@@ -42,7 +43,7 @@ export const createOrder = (ingredients) => {
   return async (dispatch) => {
     dispatch(orderRequest());
     try {
-      const response = await fetch('https://norma.nomoreparties.space/api/orders', {
+      const data = await request('/orders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -50,14 +51,7 @@ export const createOrder = (ingredients) => {
         body: JSON.stringify({ ingredients })
       });
       
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      
-      const data = await response.json();
       dispatch(orderSuccess(data.order));
-      
-
       dispatch(clearConstructor());
     } catch (error) {
       dispatch(orderError(error.message));

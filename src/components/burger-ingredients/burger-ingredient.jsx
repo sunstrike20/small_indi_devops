@@ -1,14 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PropTypes from 'prop-types';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients.module.scss';
-import { IngredientType } from '@utils/types';
 import { selectBun, selectIngredients as selectConstructorIngredients } from '@services/constructor/constructorSlice';
 import { setCurrentIngredient } from '@services/ingredient-details/ingredientDetailsSlice';
+import { selectIngredients } from '@services/ingredients/ingredientsSlice';
 import DraggableIngredient from './draggable-ingredient';
 
-const BurgerIngredients = ({ ingredients }) => {
+const BurgerIngredients = () => {
   const dispatch = useDispatch();
   const [current, setCurrent] = useState('bun');
   
@@ -17,6 +16,7 @@ const BurgerIngredients = ({ ingredients }) => {
   const mainRef = useRef(null);
   const containerRef = useRef(null);
   
+  const ingredients = useSelector(selectIngredients);
   const constructorBun = useSelector(selectBun);
   const constructorIngredients = useSelector(selectConstructorIngredients);
 
@@ -143,10 +143,6 @@ const BurgerIngredients = ({ ingredients }) => {
       </div>
     </section>
   );
-};
-
-BurgerIngredients.propTypes = {
-  ingredients: PropTypes.arrayOf(IngredientType).isRequired
 };
 
 export default BurgerIngredients;

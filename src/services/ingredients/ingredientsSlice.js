@@ -1,4 +1,5 @@
 import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { request } from '@utils/api';
 
 const initialState = {
   items: [],
@@ -59,19 +60,8 @@ export const fetchIngredients = () => {
   return async (dispatch) => {
     dispatch(getIngredientsRequest());
     try {
-      const response = await fetch('https://norma.nomoreparties.space/api/ingredients');
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      
-      const data = await response.json();
-      
-      if (data.success) {
-        dispatch(getIngredientsSuccess(data.data));
-      } else {
-        throw new Error('Ошибка получения данных об ингредиентах');
-      }
+      const data = await request('/ingredients');
+      dispatch(getIngredientsSuccess(data.data));
     } catch (error) {
       dispatch(getIngredientsError(error.message));
     }

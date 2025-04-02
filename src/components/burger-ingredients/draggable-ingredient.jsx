@@ -11,7 +11,6 @@ const DraggableIngredient = ({ ingredient, count, onClick }) => {
   const [{ isDragging }, dragRef] = useDrag({
     type: ingredient.type === 'bun' ? 'bun' : 'ingredient',
     item: () => {
-
       return {
         _id: ingredient._id,
         name: ingredient.name,
@@ -25,7 +24,6 @@ const DraggableIngredient = ({ ingredient, count, onClick }) => {
     })
   });
   
-
   dragRef(ref);
   
   return (
