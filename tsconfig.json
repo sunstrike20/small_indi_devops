@@ -21,7 +21,7 @@
 		"plugins": [{ "name": "typescript-plugin-css-modules" }],
 		"paths": {
 			"@pages/*": ["./src/pages/*"],
-			"@components/*": ["./src/component/*"],
+			"@components/*": ["./src/components/*"], // Исправлено "components" (множественное число)
 			"@services/*": ["./src/services/*"],
 			"@utils/*": ["./src/utils/*"]
 		}

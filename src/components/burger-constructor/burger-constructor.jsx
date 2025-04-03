@@ -1,19 +1,93 @@
-import PropTypes from 'prop-types';
-import { ConstructorElement, Button, CurrencyIcon, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import React, { useCallback, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useDrop } from 'react-dnd';
+import { ConstructorElement, Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-constructor.module.scss';
-import { IngredientType } from '@utils/types';
+import { 
+  setBun, 
+  addIngredient, 
+  removeIngredient, 
+  moveIngredient as moveIngredientAction,
+  selectBun, 
+  selectIngredients, 
+  selectTotalPrice,
+  generateUuid
+} from '@services/constructor/constructorSlice';
+import { createOrder } from '@services/order/orderSlice';
+import DraggableConstructorElement from './draggable-constructor-element';
 
-export const BurgerConstructor = ({ ingredients, onOrderClick }) => {
+export const BurgerConstructor = () => {
+  const dispatch = useDispatch();
+  const bun = useSelector(selectBun);
+  const ingredients = useSelector(selectIngredients);
+  const totalPrice = useSelector(selectTotalPrice);
   
-  const bun = ingredients.find(item => item.type === 'bun');
+  const constructorState = useSelector(state => state.constructor);
   
-  const fillings = ingredients.filter(item => item.type !== 'bun').slice(0, 5);
+  React.useEffect(() => {
+    if (typeof constructorState === 'function') {
+      dispatch({ type: 'constructor/init' });
+    }
+  }, [dispatch, constructorState]);
   
-  const totalPrice = 444;
+  const [{ isHover }, dropTarget] = useDrop({
+    accept: ['bun', 'ingredient'],
+    drop(item, monitor) {
+      try {
+        if (!item || !item._id || !item.name || !item.price || !item.image) {
+          return { dropped: false };
+        }
+        
+        const safeItem = {
+          _id: item._id,
+          name: item.name,
+          price: item.price,
+          image: item.image,
+          type: item.type
+        };
+        
+        if (item.type === 'bun') {
+          dispatch(setBun(safeItem));
+        } else {
+          dispatch(addIngredient({
+            ...safeItem,
+            uuid: generateUuid()
+          }));
+        }
+        
+        return { dropped: true };
+      } catch (error) {
+        return { dropped: false };
+      }
+    },
+    collect: monitor => ({
+      isHover: monitor.isOver()
+    })
+  });
   
-  return (
-    <section className={styles.section}>
-      <div className={styles.constructorElements}>
+  const handleDeleteIngredient = (uuid) => {
+    dispatch(removeIngredient(uuid));
+  };
+  
+  const handleCreateOrder = () => {
+    if (!bun || ingredients.length === 0) return;
+    
+    const orderIngredients = [
+      bun._id,
+      ...ingredients.map(item => item._id),
+      bun._id
+    ];
+    
+    dispatch(createOrder(orderIngredients));
+  };
+  
+  const moveIngredient = useCallback((dragIndex, hoverIndex) => {
+    dispatch(moveIngredientAction({ dragIndex, hoverIndex }));
+  }, [dispatch]);
+  
+  const orderContent = useMemo(() => {
+    return (
+      <>
         {bun && (
           <div className={styles.bun}>
             <ConstructorElement
@@ -27,18 +101,21 @@ export const BurgerConstructor = ({ ingredients, onOrderClick }) => {
         )}
         
         <div className={styles.scrollArea}>
-          {fillings.map((item, index) => (
-            <div key={index} className={styles.ingredient}>
-              <div className={styles.dragIcon}>
-                <DragIcon type="primary" />
-              </div>
-              <ConstructorElement
-                text={item.name}
-                price={item.price}
-                thumbnail={item.image}
+          {ingredients.length > 0 ? (
+            ingredients.map((item, index) => (
+              <DraggableConstructorElement
+                key={item.uuid}
+                item={item}
+                index={index}
+                handleDelete={handleDeleteIngredient}
+                moveIngredient={moveIngredient}
               />
-            </div>
-          ))}
+            ))
+          ) : (
+            <p className="text text_type_main-default text_color_inactive">
+              Перетащите ингредиенты сюда
+            </p>
+          )}
         </div>
         
         {bun && (
@@ -52,6 +129,18 @@ export const BurgerConstructor = ({ ingredients, onOrderClick }) => {
             />
           </div>
         )}
+      </>
+    );
+  }, [bun, ingredients, handleDeleteIngredient, moveIngredient]);
+  
+  return (
+    <section 
+      className={`${styles.section} ${isHover ? styles.hovering : ''}`} 
+      ref={dropTarget}
+      data-test-id="burger-constructor"
+    >
+      <div className={styles.constructorElements}>
+        {orderContent}
       </div>
       
       <div className={styles.total}>
@@ -63,18 +152,14 @@ export const BurgerConstructor = ({ ingredients, onOrderClick }) => {
           htmlType="button" 
           type="primary" 
           size="large"
-          onClick={onOrderClick}
+          onClick={handleCreateOrder}
+          disabled={!bun || ingredients.length === 0}
         >
           Оформить заказ
         </Button>
       </div>
     </section>
   );
-};
-
-BurgerConstructor.propTypes = {
-  ingredients: PropTypes.arrayOf(IngredientType).isRequired,
-  onOrderClick: PropTypes.func.isRequired
 };
 
 export default BurgerConstructor;
