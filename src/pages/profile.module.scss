@@ -1,0 +1,85 @@
+.profileContainer {
+  display: flex;
+  padding: 120px 0 0 380px;
+  gap: 60px;
+}
+
+.sidebar {
+  width: 320px;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 80px 0;
+}
+
+.menuItem {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menuItem a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logoutBtn {
+  color: #8585AD;
+}
+
+.logoutBtn:hover {
+  color: #F2F2F3;
+}
+
+.active {
+  color: #F2F2F3;
+}
+
+.description {
+  opacity: 0.4;
+}
+
+.form {
+  width: 480px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.ordersContainer {
+  width: 580px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.error {
+  color: #FF0000;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.loadingMessage,
+.errorMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  width: 100%;
+  gap: 20px;
+} 

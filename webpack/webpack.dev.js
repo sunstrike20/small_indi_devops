@@ -5,12 +5,27 @@ module.exports = {
 	mode: 'development',
 	devtool: 'eval-source-map',
 	devServer: {
-		historyApiFallback: true,
-		static: path.resolve(__dirname, './dist'), // путь, куда "смотрит" режим разработчика
-		// compress: true, // это ускорит загрузку в режиме разработки
-		port: 8080, // порт, чтобы открывать сайт по адресу localhost:8080, но можно поменять порт
-		open: true, // сайт будет открываться сам при запуске npm run dev
+		historyApiFallback: true, // Критически важно для React Router
+		static: {
+			directory: path.resolve(__dirname, '../dist'),
+			publicPath: '/'
+		},
+		port: 8080,
+		open: true,
 		hot: true,
+		proxy: {
+			'/api': {
+				target: 'https://norma.nomoreparties.space',
+				changeOrigin: true,
+				secure: false,
+				headers: {
+					Connection: 'keep-alive'
+				}
+			}
+		}
+	},
+	output: {
+		publicPath: '/' // Важно для React Router - все пути относительно корня
 	},
 	plugins: [new ReactRefreshWebpackPlugin()],
 };

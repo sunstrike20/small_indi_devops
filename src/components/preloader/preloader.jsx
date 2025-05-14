@@ -1,6 +1,7 @@
 import { ClipLoader } from 'react-spinners';
 import PropTypes from 'prop-types';
 import styles from './preloader.module.scss';
+import React, { useState, useEffect } from 'react';
 
 export const Preloader = ({ 
   size = 80, 
@@ -9,18 +10,37 @@ export const Preloader = ({
   message = null, 
   error = false 
 }) => {
+  const [dots, setDots] = useState('');
+  
+  // Эффект для анимации точек в сообщении загрузки
+  useEffect(() => {
+    if (loading) {
+      const intervalId = setInterval(() => {
+        setDots(prev => {
+          if (prev.length >= 3) return '';
+          return prev + '.';
+        });
+      }, 500);
+      
+      return () => clearInterval(intervalId);
+    }
+  }, [loading]);
+
   return (
     <div className={styles.preloaderContainer}>
       {loading && (
-        <ClipLoader 
-          color={color} 
-          size={size} 
-          loading={loading} 
-        />
+        <div className={styles.loaderWrapper}>
+          <ClipLoader 
+            color={color} 
+            size={size} 
+            loading={loading} 
+          />
+          <div className={styles.pulseEffect}></div>
+        </div>
       )}
       {message && (
         <p className={error ? styles.errorText : styles.loadingText}>
-          {message}
+          {loading ? `${message}${dots}` : message}
         </p>
       )}
     </div>

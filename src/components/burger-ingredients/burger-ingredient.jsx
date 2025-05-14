@@ -6,9 +6,12 @@ import { selectBun, selectIngredients as selectConstructorIngredients } from '@s
 import { setCurrentIngredient } from '@services/ingredient-details/ingredientDetailsSlice';
 import { selectIngredients } from '@services/ingredients/ingredientsSlice';
 import DraggableIngredient from './draggable-ingredient';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const BurgerIngredients = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [current, setCurrent] = useState('bun');
   
   const bunRef = useRef(null);
@@ -41,6 +44,9 @@ const BurgerIngredients = () => {
 
   const handleCardClick = (ingredient) => {
     dispatch(setCurrentIngredient(ingredient));
+    navigate(`/ingredients/${ingredient._id}`, { 
+      state: { backgroundLocation: location }
+    });
   };
   
 
