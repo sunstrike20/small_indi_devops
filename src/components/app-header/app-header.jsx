@@ -1,29 +1,44 @@
+import { Link, useLocation } from 'react-router-dom';
 import { BurgerIcon, ListIcon, ProfileIcon, Logo } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './app-header.module.scss';
 
 export const AppHeader = () => {
+    const location = useLocation();
+    const isActive = (path) => location.pathname === path;
+
     return (
         <header className={styles.header}>
             <nav className={styles.nav}>
                 <div className={styles.navGroup}>
-                    <a href="/" className={`${styles.link} ${styles.active} text text_type_main-default`}>
-                        <BurgerIcon type="primary" />
+                    <Link 
+                        to="/" 
+                        className={`${styles.link} ${isActive('/') ? styles.active : ''} text text_type_main-default`}
+                    >
+                        <BurgerIcon type={isActive('/') ? "primary" : "secondary"} />
                         Конструктор
-                    </a>
-                    <a href="/orders" className={`${styles.link} text text_type_main-default`}>
-                        <ListIcon type="secondary" />
+                    </Link>
+                    <Link 
+                        to="/orders" 
+                        className={`${styles.link} ${isActive('/orders') ? styles.active : ''} text text_type_main-default`}
+                    >
+                        <ListIcon type={isActive('/orders') ? "primary" : "secondary"} />
                         Лента заказов
-                    </a>
+                    </Link>
                 </div>
                 
                 <div className={styles.logo}>
-                    <Logo />
+                    <Link to="/">
+                        <Logo />
+                    </Link>
                 </div>
                 
-                <a href="/profile" className={`${styles.link} text text_type_main-default`}>
-                    <ProfileIcon type="secondary" />
+                <Link 
+                    to="/profile" 
+                    className={`${styles.link} ${isActive('/profile') ? styles.active : ''} text text_type_main-default`}
+                >
+                    <ProfileIcon type={isActive('/profile') ? "primary" : "secondary"} />
                     Личный кабинет
-                </a>
+                </Link>
             </nav>
         </header>
     )

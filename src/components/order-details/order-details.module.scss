@@ -3,93 +3,70 @@
   flex-direction: column;
   align-items: center;
   padding: 60px 0;
+  width: 520px;
+  margin: 0 auto;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 0;
+  width: 520px;
+  margin: 0 auto;
+}
+
+.loadingInfo {
+  font-style: normal;
   text-align: center;
-  width: 100%;
+}
+
+.loadingPrompt {
+  font-style: italic;
+  text-align: center;
 }
 
 .orderNumber {
   font-family: 'Iceland', Arial, sans-serif;
   font-style: normal;
-  font-weight: 400;
+  font-weight: normal;
   font-size: 144px;
   line-height: 120px;
   text-align: center;
+  text-shadow: 0px 0px 16px rgba(51, 51, 255, 0.25),
+    0px 0px 8px rgba(51, 51, 255, 0.25),
+    0px 4px 32px rgba(51, 51, 255, 0.5);
   color: #F2F2F3;
-  margin: 0;
-  padding: 0;
-  text-shadow: 0px 0px 16px rgba(51, 51, 255, 0.25), 0px 0px 8px rgba(51, 51, 255, 0.25), 0px 4px 32px rgba(51, 51, 255, 0.5);
+}
+
+.title {
+  text-align: center;
 }
 
 .iconContainer {
   margin: 60px 0;
-  width: 120px;
-  height: 120px;
   display: flex;
-  align-items: center;
   justify-content: center;
-  position: relative;
+  align-items: center;
 }
 
 .iconBackground {
   width: 120px;
   height: 120px;
-  background: radial-gradient(50% 50% at 50% 50%, rgba(76, 76, 255, 0.15) 0%, rgba(76, 76, 255, 0.15) 100%);
+  background: radial-gradient(50% 50% at 50% 50%, rgba(128, 26, 179, 0) 0%, rgba(76, 76, 255, 0.25) 100%);
   border-radius: 50%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background: radial-gradient(50% 50% at 50% 50%, rgba(76, 76, 255, 0) 0%, rgba(76, 76, 255, 0.25) 100%);
-    z-index: -1;
-    transform: scale(1.07);
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    width: 68%;
-    height: 68%;
-    border-radius: 50%;
-    background: radial-gradient(50% 50% at 50% 50%, rgba(76, 76, 255, 0) 0%, rgba(76, 76, 255, 0.125) 100%);
-    z-index: -1;
-  }
-}
-
-// Стили для текста и дополнительные отступы
-.title {
-  margin-top: 8px;
-  font-family: 'JetBrains Mono', Arial, sans-serif;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 30px;
+  align-items: center;
 }
 
 .description {
-  margin-top: 15px;
-  font-family: 'JetBrains Mono', Arial, sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
+  text-align: center;
 }
 
 .additionalInfo {
-  margin-top: 2px;
-  margin-bottom: 30px;
-  font-family: 'JetBrains Mono', Arial, sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #8585AD;
+  text-align: center;
+  margin-top: 8px;
 }
 
 .icon {

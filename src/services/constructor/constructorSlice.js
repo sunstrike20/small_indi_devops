@@ -54,7 +54,7 @@ function createSafeConstructorReducer() {
         }
       },
       
-      clearConstructor: (state) => {
+      clear: (state) => {
         state.bun = null;
         state.ingredients = [];
       }
@@ -118,7 +118,7 @@ const constructorSlice = createSlice({
       }
     },
     
-    clearConstructor: (state) => {
+    clear: (state) => {
       state.bun = null;
       state.ingredients = [];
     }
@@ -129,8 +129,7 @@ export const {
   setBun, 
   addIngredient, 
   removeIngredient, 
-  moveIngredient,
-  clearConstructor
+  moveIngredient
 } = constructorSlice.actions;
 
 export const constructorReducer = createSafeConstructorReducer();
@@ -170,3 +169,17 @@ export const selectTotalPrice = createSelector(
     return bunPrice + ingredientsPrice;
   }
 );
+
+// Создаем улучшенную версию clearConstructor, которая проверяет
+// авторизацию пользователя перед очисткой конструктора
+export const clearConstructor = () => {
+  return (dispatch, getState) => {
+    const { auth } = getState();
+    
+    // Очищаем конструктор только если пользователь авторизован
+    // Это позволит сохранить состояние конструктора при перенаправлении на страницу логина
+    if (auth.isAuthenticated) {
+      dispatch(constructorSlice.actions.clear());
+    }
+  };
+};

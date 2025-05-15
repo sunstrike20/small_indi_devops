@@ -10,7 +10,17 @@ export const OrderDetails = () => {
   const error = useSelector(selectOrderError);
   
   if (isLoading) {
-    return <Preloader message="Создание заказа..." />;
+    return (
+      <div className={styles.loadingContainer}>
+        <Preloader message="Создание заказа..." />
+        <p className={`${styles.loadingInfo} text text_type_main-default text_color_inactive mt-4`}>
+          Запрос может выполняться до 20 секунд
+        </p>
+        <p className={`${styles.loadingPrompt} text text_type_main-default text_color_inactive mt-2`}>
+          Пожалуйста, подождите...
+        </p>
+      </div>
+    );
   }
   
   if (error) {

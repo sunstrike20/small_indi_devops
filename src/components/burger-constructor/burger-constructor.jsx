@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useDrop } from 'react-dnd';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ConstructorElement, Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-constructor.module.scss';
 import { 
@@ -13,14 +14,19 @@ import {
   selectTotalPrice,
   generateUuid
 } from '@services/constructor/constructorSlice';
-import { createOrder } from '@services/order/orderSlice';
+import { createOrder, selectOrderLoading } from '@services/order/orderSlice';
+import { selectIsAuthenticated } from '@services/auth/authSlice';
 import DraggableConstructorElement from './draggable-constructor-element';
 
 export const BurgerConstructor = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
   const bun = useSelector(selectBun);
   const ingredients = useSelector(selectIngredients);
   const totalPrice = useSelector(selectTotalPrice);
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const isOrderLoading = useSelector(selectOrderLoading);
   
   const constructorState = useSelector(state => state.constructor);
   
@@ -71,6 +77,13 @@ export const BurgerConstructor = () => {
   
   const handleCreateOrder = () => {
     if (!bun || ingredients.length === 0) return;
+    
+    if (!isAuthenticated) {
+      navigate('/login', { 
+        state: { from: location.pathname } 
+      });
+      return;
+    }
     
     const orderIngredients = [
       bun._id,
@@ -153,9 +166,9 @@ export const BurgerConstructor = () => {
           type="primary" 
           size="large"
           onClick={handleCreateOrder}
-          disabled={!bun || ingredients.length === 0}
+          disabled={!bun || ingredients.length === 0 || isOrderLoading}
         >
-          Оформить заказ
+          {isOrderLoading ? 'Оформляем...' : 'Оформить заказ'}
         </Button>
       </div>
     </section>
