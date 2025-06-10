@@ -1,0 +1,32 @@
+.caption {
+  position: absolute;
+  width: 320px;
+  height: 48px;
+  left: 380px;
+  top: 380px; /* Единая позиция для всех страниц - на 232px ниже навигации (148 + 192 + 40) */
+  
+  /* desktop/text */
+  font-family: 'JetBrains Mono', monospace;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  
+  /* text/dark grey (secondary text) */
+  color: #8585AD;
+  opacity: 0.4;
+  
+  @media (max-width: 1400px) {
+    left: 40px;
+    top: 380px;
+  }
+  
+  @media (max-width: 768px) {
+    position: static;
+    width: 100%;
+    margin: 20px 0;
+    text-align: center;
+  }
+}
+
+ 

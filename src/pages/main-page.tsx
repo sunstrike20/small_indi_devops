@@ -6,16 +6,16 @@ import { BurgerConstructor } from '../components/burger-constructor/burger-const
 import styles from '../components/app/app.module.scss';
 
 const MainPage: React.FC = () => {
-  return (
-    <main className={styles.main}>
-      <div className={styles.container}>
-        <DndProvider backend={HTML5Backend}>
-          <BurgerIngredients />
-          <BurgerConstructor />
-        </DndProvider>
-      </div>
-    </main>
-  );
+	return (
+		<main className={styles.main}>
+			<div className={styles.container}>
+				<DndProvider backend={HTML5Backend}>
+					<BurgerIngredients />
+					<BurgerConstructor />
+				</DndProvider>
+			</div>
+		</main>
+	);
 };
 
-export default MainPage; 
+export default MainPage;

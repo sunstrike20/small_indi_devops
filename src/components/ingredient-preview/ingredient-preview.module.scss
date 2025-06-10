@@ -1,0 +1,87 @@
+.ingredientsContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 64px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.ingredientPreview {
+  position: relative;
+  box-sizing: border-box;
+  width: 64px;
+  height: 64px;
+  background: #131316;
+  border-radius: 100px;
+  margin-left: -16px;
+  flex: none;
+  overflow: hidden;
+  
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+.illustration {
+  position: absolute;
+  left: -37.5%;
+  right: -37.5%;
+  top: 6.25%;
+  bottom: 6.25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000000;
+}
+
+.moreOverlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.dim {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: #1C1C21;
+  opacity: 0.6;
+}
+
+.ingredientsCount {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #F2F2F3;
+  z-index: 10;
+} 

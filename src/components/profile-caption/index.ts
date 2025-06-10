@@ -1,0 +1,1 @@
+export { ProfileCaption } from './profile-caption'; 

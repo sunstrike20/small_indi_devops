@@ -1,0 +1,1 @@
+export { IngredientPreview } from './ingredient-preview'; 
