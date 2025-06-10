@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 import { useParams, useLocation, Location } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 import { IngredientDetails } from '../components/ingredient-details/ingredient-details';
 import { setCurrentIngredient } from '../services/ingredient-details/ingredientDetailsSlice';
 import styles from './ingredient-page.module.scss';
 import { Ingredient, RootState } from '@utils/types';
-
-import { AppDispatch } from '@utils/store-types';
+import { useAppDispatch, useAppSelector } from '@utils/store-types';
 
 interface LocationState {
 	backgroundLocation?: Location;
@@ -15,20 +13,20 @@ interface LocationState {
 const IngredientPage: React.FC = () => {
 	const params = useParams();
 	const id = params.id;
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 	const location = useLocation() as Location & { state: LocationState };
 
 	// Check if this is a direct navigation or modal state
 	const isModal = location.state?.backgroundLocation;
 
 	// Get ingredients from store
-	const ingredients = useSelector(
+	const ingredients = useAppSelector(
 		(state: RootState) => state.ingredients.items
 	);
-	const ingredientsLoading = useSelector(
+	const ingredientsLoading = useAppSelector(
 		(state: RootState) => state.ingredients.loading
 	);
-	const ingredient = useSelector((state: RootState) =>
+	const ingredient = useAppSelector((state: RootState) =>
 		state.ingredients.items.find((item: Ingredient) => item._id === id)
 	);
 

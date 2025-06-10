@@ -1,5 +1,4 @@
 import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import {
 	Input,
 	EmailInput,
@@ -14,7 +13,7 @@ import {
 	clearError,
 } from '../services/auth/authSlice';
 import styles from './profile.module.scss';
-import { AppDispatch } from '@utils/store-types';
+import { useAppDispatch, useAppSelector } from '@utils/store-types';
 
 interface UserUpdateData {
 	name: string;
@@ -23,10 +22,10 @@ interface UserUpdateData {
 }
 
 const ProfileForm: React.FC = () => {
-	const dispatch = useDispatch<AppDispatch>();
-	const user = useSelector(selectUser);
-	const isLoading = useSelector(selectAuthLoading);
-	const error = useSelector(selectAuthError);
+	const dispatch = useAppDispatch();
+	const user = useAppSelector(selectUser);
+	const isLoading = useAppSelector(selectAuthLoading);
+	const error = useAppSelector(selectAuthError);
 
 	const [name, setName] = useState<string>('');
 	const [email, setEmail] = useState<string>('');

@@ -62,5 +62,6 @@ export interface ResetPasswordData {
 }
 
 // Типизированные хуки для использования в компонентах
+// Используйте эти хуки вместо useDispatch и useSelector из 'react-redux'
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

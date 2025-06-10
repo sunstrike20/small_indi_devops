@@ -1,6 +1,5 @@
 import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import {
 	Input,
 	EmailInput,
@@ -15,18 +14,18 @@ import {
 	clearError,
 } from '../services/auth/authSlice';
 import styles from './form.module.scss';
-import { AppDispatch } from '@utils/store-types';
+import { useAppDispatch, useAppSelector } from '@utils/store-types';
 
 const RegisterPage: React.FC = () => {
 	const [name, setName] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
-	const isLoading = useSelector(selectAuthLoading);
-	const error = useSelector(selectAuthError);
-	const isAuthenticated = useSelector(selectIsAuthenticated);
+	const isLoading = useAppSelector(selectAuthLoading);
+	const error = useAppSelector(selectAuthError);
+	const isAuthenticated = useAppSelector(selectIsAuthenticated);
 
 	// Redirect if already authenticated
 	useEffect(() => {

@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './burger-ingredients.module.scss';
 import {
@@ -11,12 +10,12 @@ import { selectIngredients } from '@services/ingredients/ingredientsSlice';
 import DraggableIngredient from './draggable-ingredient';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Ingredient, ConstructorIngredient } from '@utils/types';
-import { AppDispatch } from '@utils/store-types';
+import { useAppDispatch, useAppSelector } from '@utils/store-types';
 
 type TabValue = 'bun' | 'sauce' | 'main';
 
 const BurgerIngredients: React.FC = () => {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const location = useLocation();
 	const [current, setCurrent] = useState<TabValue>('bun');
@@ -26,9 +25,9 @@ const BurgerIngredients: React.FC = () => {
 	const mainRef = useRef<HTMLHeadingElement>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
 
-	const ingredients = useSelector(selectIngredients);
-	const constructorBun = useSelector(selectBun);
-	const constructorIngredients = useSelector(selectConstructorIngredients);
+	const ingredients = useAppSelector(selectIngredients);
+	const constructorBun = useAppSelector(selectBun);
+	const constructorIngredients = useAppSelector(selectConstructorIngredients);
 
 	const getCount = (ingredient: Ingredient): number => {
 		if (ingredient.type === 'bun') {

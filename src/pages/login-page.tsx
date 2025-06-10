@@ -1,6 +1,5 @@
 import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import { Link, useNavigate, useLocation, Location } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import {
 	EmailInput,
 	PasswordInput,
@@ -14,7 +13,7 @@ import {
 	clearError,
 } from '../services/auth/authSlice';
 import styles from './form.module.scss';
-import { AppDispatch } from '@utils/store-types';
+import { useAppDispatch, useAppSelector } from '@utils/store-types';
 
 interface LocationState {
 	from?: { pathname: string };
@@ -24,12 +23,12 @@ const LoginPage: React.FC = () => {
 	const [email, setEmail] = useState<string>('');
 	const [password, setPassword] = useState<string>('');
 
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 	const location = useLocation() as Location & { state: LocationState };
-	const isLoading = useSelector(selectAuthLoading);
-	const error = useSelector(selectAuthError);
-	const isAuthenticated = useSelector(selectIsAuthenticated);
+	const isLoading = useAppSelector(selectAuthLoading);
+	const error = useAppSelector(selectAuthError);
+	const isAuthenticated = useAppSelector(selectIsAuthenticated);
 
 	// Get the path to redirect to after login (if any)
 	const from = location.state?.from?.pathname || '/';

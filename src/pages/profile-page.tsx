@@ -4,7 +4,6 @@ import {
 	Route,
 	useLocation,
 } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import {
 	fetchUser,
 	selectIsAuthenticated,
@@ -17,15 +16,15 @@ import ProfileForm from './profile-form';
 import ProfileOrders from './profile-orders';
 import { ProfileNavigation } from '../components/profile-navigation';
 import { ProfileCaption } from '../components/profile-caption';
-import { AppDispatch } from '@utils/store-types';
+import { useAppDispatch, useAppSelector } from '@utils/store-types';
 
 const ProfilePage: React.FC = () => {
-	const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useAppDispatch();
 	const location = useLocation();
-	const isAuthenticated = useSelector(selectIsAuthenticated);
-	const isLoading = useSelector(selectAuthLoading);
-	const error = useSelector(selectAuthError);
-	const user = useSelector(selectUser);
+	const isAuthenticated = useAppSelector(selectIsAuthenticated);
+	const isLoading = useAppSelector(selectAuthLoading);
+	const error = useAppSelector(selectAuthError);
+	const user = useAppSelector(selectUser);
 
 	const [errorDetails, setErrorDetails] = useState<string>('');
 	const fetchAttempted = useRef<boolean>(false);
