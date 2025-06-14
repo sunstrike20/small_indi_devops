@@ -8,16 +8,22 @@ import ProfileForm from './profile-form';
 import ProfileOrders from './profile-orders';
 import IngredientPage from './ingredient-page';
 import NotFoundPage from './not-found-page';
+import { OrderFeedPage } from './order-feed-page';
+import { OrderInfoPage } from './order-info-page';
+import { OrderHistoryPage } from './order-history-page';
 
 export {
-  MainPage,
-  LoginPage,
-  RegisterPage,
-  ForgotPasswordPage,
-  ResetPasswordPage,
-  ProfilePage,
-  ProfileForm,
-  ProfileOrders,
-  IngredientPage,
-  NotFoundPage
-}; 
+	MainPage,
+	LoginPage,
+	RegisterPage,
+	ForgotPasswordPage,
+	ResetPasswordPage,
+	ProfilePage,
+	ProfileForm,
+	ProfileOrders,
+	IngredientPage,
+	NotFoundPage,
+	OrderFeedPage,
+	OrderInfoPage,
+	OrderHistoryPage,
+};

@@ -9,11 +9,11 @@ import { App } from './components/app';
 const domNode = document.getElementById('root');
 const root = createRoot(domNode as HTMLElement);
 root.render(
-  <StrictMode>
-    <Provider store={store}>
-      <DndProvider backend={HTML5Backend}>
-        <App />
-      </DndProvider>
-    </Provider>
-  </StrictMode>
-); 
+	<StrictMode>
+		<Provider store={store}>
+			<DndProvider backend={HTML5Backend}>
+				<App />
+			</DndProvider>
+		</Provider>
+	</StrictMode>
+);

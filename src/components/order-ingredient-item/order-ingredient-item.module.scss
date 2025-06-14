@@ -1,0 +1,109 @@
+.ingredientItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  height: 64px;
+  
+  @media (max-width: 480px) {
+    gap: 12px;
+  }
+}
+
+.ingredientPreview {
+  position: relative;
+  box-sizing: border-box;
+  width: 64px;
+  height: 64px;
+  background: #131316;
+  border-radius: 100px;
+  flex: none;
+  overflow: hidden;
+}
+
+.illustration {
+  position: absolute;
+  left: -37.5%;
+  right: -37.5%;
+  top: 6.25%;
+  bottom: 6.25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000000;
+}
+
+.ingredientsCount {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(28, 28, 33, 0.6);
+  font-family: 'JetBrains Mono', monospace;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #F2F2F3;
+  border-radius: 100px;
+}
+
+.name {
+  flex: 1;
+  font-family: 'JetBrains Mono', monospace;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #F2F2F3;
+  
+  @media (max-width: 480px) {
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+.price {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+}
+
+.priceValue {
+  font-family: 'Iceland', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  color: #F2F2F3;
+  
+  @media (max-width: 480px) {
+    font-size: 24px;
+    line-height: 20px;
+  }
+} 

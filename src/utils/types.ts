@@ -4,149 +4,145 @@ export type IngredientType = 'bun' | 'main' | 'sauce';
 
 // Интерфейс для ингредиента
 export interface Ingredient {
-  _id: string;
-  name: string;
-  type: IngredientType;
-  proteins: number;
-  fat: number;
-  carbohydrates: number;
-  calories: number;
-  price: number;
-  image: string;
-  image_mobile: string;
-  image_large: string;
-  __v: number;
+	_id: string;
+	name: string;
+	type: IngredientType;
+	proteins: number;
+	fat: number;
+	carbohydrates: number;
+	calories: number;
+	price: number;
+	image: string;
+	image_mobile: string;
+	image_large: string;
+	__v: number;
 }
 
 // Интерфейс для ингредиента в конструкторе (с уникальным id)
 export interface ConstructorIngredient extends Ingredient {
-  uuid: string;
+	uuid: string;
 }
 
 // Интерфейс для перемещения элементов в конструкторе
 export interface DragItem {
-  index: number;
-  id: string;
-  type: string;
+	index: number;
+	id: string;
+	type: string;
 }
 
 // Интерфейс для пользователя
 export interface User {
-  email: string;
-  name: string;
+	email: string;
+	name: string;
 }
 
 // Интерфейс для авторизации
 export interface AuthResponse {
-  success: boolean;
-  accessToken: string;
-  refreshToken: string;
-  user: User;
+	success: boolean;
+	accessToken: string;
+	refreshToken: string;
+	user: User;
 }
 
 // Интерфейс для данных заказа
 export interface Order {
-  _id: string;
-  number: number;
-  name: string;
-  status: 'created' | 'pending' | 'done';
-  createdAt: string;
-  updatedAt: string;
-  ingredients: string[];
+	_id: string;
+	number: number;
+	name: string;
+	status: 'created' | 'pending' | 'done';
+	createdAt: string;
+	updatedAt: string;
+	ingredients: string[];
 }
 
 // Типы для состояний Redux
 
 // Состояние ингредиентов
 export interface IngredientsState {
-  items: Ingredient[];
-  loading: boolean;
-  error: string | null;
+	items: Ingredient[];
+	loading: boolean;
+	error: string | null;
 }
 
 // Состояние конструктора
 export interface ConstructorState {
-  bun: Ingredient | null;
-  ingredients: ConstructorIngredient[];
+	bun: Ingredient | null;
+	ingredients: ConstructorIngredient[];
 }
 
 // Состояние текущего ингредиента
 export interface IngredientDetailsState {
-  currentIngredient: Ingredient | null;
+	currentIngredient: Ingredient | null;
 }
 
 // Состояние заказа
 export interface OrderState {
-  order: Order | null;
-  loading: boolean;
-  error: string | null;
+	order: Order | null;
+	loading: boolean;
+	error: string | null;
 }
 
 // Состояние авторизации
 export interface AuthState {
-  user: User | null;
-  accessToken: string | null;
-  isAuthenticated: boolean;
-  loading: boolean;
-  error: string | null;
-  tokenRefreshAttempted: boolean;
+	user: User | null;
+	accessToken: string | null;
+	isAuthenticated: boolean;
+	loading: boolean;
+	error: string | null;
+	tokenRefreshAttempted: boolean;
 }
 
-// Общий тип состояния приложения
-export interface RootState {
-  ingredients: IngredientsState;
-  constructor: ConstructorState;
-  ingredientDetails: IngredientDetailsState;
-  order: OrderState;
-  auth: AuthState;
-}
+// Общий тип состояния приложения (выводится автоматически из rootReducer)
+export type RootState = ReturnType<
+	typeof import('../services/reducers').rootReducer
+>;
 
 // Типы для компонентов
 
 // Пропсы модального окна
 export interface ModalProps {
-  title?: string;
-  children: React.ReactNode;
-  onClose: () => void;
+	title?: string;
+	children: React.ReactNode;
+	onClose: () => void;
 }
 
 // Пропсы для наложения модального окна
 export interface ModalOverlayProps {
-  onClick: () => void;
+	onClick: () => void;
 }
 
 // Пропсы для детальной информации об ингредиенте
 export interface IngredientDetailsProps {
-  ingredient: Ingredient;
+	ingredient: Ingredient;
 }
 
 // Пропсы для прелоадера
 export interface PreloaderProps {
-  size?: number;
-  color?: string;
-  loading?: boolean;
-  message?: string;
-  error?: boolean;
+	size?: number;
+	color?: string;
+	loading?: boolean;
+	message?: string;
+	error?: boolean;
 }
 
 // Пропсы для перетаскиваемого элемента конструктора
 export interface DraggableConstructorElementProps {
-  item: ConstructorIngredient;
-  index: number;
-  handleDelete: (uuid: string) => void;
-  moveIngredient: (dragIndex: number, hoverIndex: number) => void;
+	item: ConstructorIngredient;
+	index: number;
+	handleDelete: (uuid: string) => void;
+	moveIngredient: (dragIndex: number, hoverIndex: number) => void;
 }
 
 // Пропсы для перетаскиваемого ингредиента
 export interface DraggableIngredientProps {
-  ingredient: Ingredient;
-  count: number;
-  onClick: () => void;
+	ingredient: Ingredient;
+	count: number;
+	onClick: () => void;
 }
 
 // Пропсы для защищенного маршрута
 export interface ProtectedRouteProps {
-  element: React.ReactElement;
-  anonymous?: boolean;
-  passwordReset?: boolean;
-} 
+	element: React.ReactElement;
+	anonymous?: boolean;
+	passwordReset?: boolean;
+}

@@ -1,0 +1,272 @@
+/* order feed */
+
+.orderFeed {
+  position: relative;
+  width: 2000px;
+  height: 1180px;
+  background: #131316;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Лента заказов - заголовок */
+.title {
+  position: absolute;
+  width: 600px;
+  height: 40px;
+  left: 680px;
+  top: 128px;
+  
+  font-family: 'JetBrains Mono', monospace;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+  display: flex;
+  align-items: center;
+  color: #F2F2F3;
+  margin: 0;
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* orders */
+.orders {
+  position: absolute;
+  width: 572px;
+  height: 852px;
+  max-height: 60vh;
+  left: 372px;
+  top: 178px;
+}
+
+/* list */
+.list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  
+  position: absolute;
+  width: 524px;
+  height: 768px;
+  max-height: 75vh;
+  left: 8px;
+  top: 0px;
+  overflow-y: auto;
+  
+  /* Кастомный скроллбар */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #2F2F37;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #8585AD;
+    border-radius: 4px;
+    border: 2px solid #2F2F37;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #9595BD;
+  }
+}
+
+/* scrollbar */
+.scrollbar {
+  position: absolute;
+  width: 8px;
+  height: 812px;
+  left: 600px;
+  top: 0px;
+  background: #2F2F37;
+}
+
+.scrollbarThumb {
+  box-sizing: border-box;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 172px;
+  background: #8585AD;
+  border: 3px solid #8585AD;
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 60px;
+  
+  position: absolute;
+  width: 580px;
+  height: 626px;
+  left: 1040px;
+  top: 178px;
+}
+
+/* Responsive для экранов меньше 2000px */
+@media (max-width: 2000px) {
+  .orderFeed {
+    width: 100%;
+    max-width: 1800px;
+    height: auto;
+    min-height: 100vh;
+    padding-top: 12px;
+    padding-bottom: 40px;
+  }
+
+  .title {
+    position: relative;
+    left: 40px;
+    top: auto;
+    width: 100%;
+    max-width: 1240px;
+    margin: 10px auto 30px;
+    padding: 0 20px;
+  }
+
+  .content {
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 40px;
+    position: relative;
+    top: auto;
+    left: auto;
+  }
+
+  .orders {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 608px;
+    max-width: 50vw;
+  }
+
+  .list {
+    width: 100%;
+    max-width: 560px;
+  }
+
+  .stats {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 580px;
+    max-width: 40vw;
+  }
+}
+
+@media (max-width: 1400px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .orders {
+    width: 100%;
+    max-width: 572px;
+    height: auto;
+    max-height: 70vh;
+  }
+
+  .list {
+    width: 100%;
+    max-width: 524px;
+    height: auto;
+    max-height: 65vh;
+    left: 0;
+    position: relative;
+  }
+
+  .stats {
+    width: 100%;
+    max-width: 580px;
+    height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .orderFeed {
+    padding-top: 100px;
+    max-width: 100vw;
+  }
+
+  .title {
+    font-size: 28px;
+    line-height: 32px;
+    padding: 0 20px;
+    margin: 20px auto 40px;
+  }
+
+  .content {
+    padding: 0 20px;
+    gap: 30px;
+  }
+
+  .orders {
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+    max-height: 60vh;
+  }
+
+  .list {
+    height: auto;
+    max-height: 55vh;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .stats {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .orderFeed {
+    padding-top: 80px;
+  }
+
+  .title {
+    font-size: 24px;
+    line-height: 28px;
+    margin: 15px auto 30px;
+  }
+
+  .content {
+    padding: 0 15px;
+    gap: 25px;
+  }
+
+  .orders {
+    max-height: 50vh;
+  }
+
+  .list {
+    max-height: 45vh;
+  }
+} 

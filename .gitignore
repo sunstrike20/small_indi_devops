@@ -1,8 +1,11 @@
 # Dependency directories
 node_modules/
+__MACOSX/
+__MACOSX
 .idea
 .vscode
-
+.husky/
+.husky
 # Logs
 logs
 *.log
