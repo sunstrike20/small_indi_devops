@@ -2,6 +2,6 @@ module.exports = {
 	mode: 'production',
 	devtool: false,
 	output: {
-		publicPath: './' // Используем относительные пути для GitHub Pages
+		publicPath: '/small_indi_devops/' // Используем путь репозитория для GitHub Pages
 	}
 };
