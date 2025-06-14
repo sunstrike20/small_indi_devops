@@ -161,8 +161,8 @@ export const BurgerConstructor: React.FC = () => {
 	const orderContent = useMemo(() => {
 		return (
 			<>
-				{bun && (
-					<div className={styles.bun}>
+				<div className={styles.bun} data-testid="constructor-bun-top">
+					{bun ? (
 						<ConstructorElement
 							type='top'
 							isLocked={true}
@@ -170,10 +170,16 @@ export const BurgerConstructor: React.FC = () => {
 							price={bun.price}
 							thumbnail={bun.image}
 						/>
-					</div>
-				)}
+					) : (
+						<div className={styles.placeholder}>
+							<p className="text text_type_main-default text_color_inactive">
+								Выберите булки
+							</p>
+						</div>
+					)}
+				</div>
 
-				<div className={styles.scrollArea}>
+				<div className={styles.scrollArea} data-testid="constructor-ingredients">
 					{ingredients.length > 0 ? (
 						ingredients.map((item, index: number) => (
 							<DraggableConstructorElement
@@ -191,8 +197,8 @@ export const BurgerConstructor: React.FC = () => {
 					)}
 				</div>
 
-				{bun && (
-					<div className={`${styles.bun} ${styles.bunBottom}`}>
+				<div className={`${styles.bun} ${styles.bunBottom}`} data-testid="constructor-bun-bottom">
+					{bun ? (
 						<ConstructorElement
 							type='bottom'
 							isLocked={true}
@@ -200,8 +206,14 @@ export const BurgerConstructor: React.FC = () => {
 							price={bun.price}
 							thumbnail={bun.image}
 						/>
-					</div>
-				)}
+					) : (
+						<div className={styles.placeholder}>
+							<p className="text text_type_main-default text_color_inactive">
+								Выберите булки
+							</p>
+						</div>
+					)}
+				</div>
 			</>
 		);
 	}, [bun, ingredients, handleDeleteIngredient, moveIngredient]);
@@ -214,7 +226,7 @@ export const BurgerConstructor: React.FC = () => {
 			<div className={styles.constructorElements}>{orderContent}</div>
 
 			<div className={styles.total}>
-				<div className={styles.price}>
+				<div className={styles.price} data-testid="total-price">
 					<span className='text text_type_digits-medium'>{totalPrice}</span>
 					<CurrencyIcon type='primary' />
 				</div>
@@ -223,7 +235,8 @@ export const BurgerConstructor: React.FC = () => {
 					type='primary'
 					size='large'
 					onClick={handleCreateOrder}
-					disabled={!bun || ingredients.length === 0 || isOrderLoading}>
+					disabled={!bun || ingredients.length === 0 || isOrderLoading}
+					data-testid="order-button">
 					{isOrderLoading ? 'Оформляем...' : 'Оформить заказ'}
 				</Button>
 			</div>
