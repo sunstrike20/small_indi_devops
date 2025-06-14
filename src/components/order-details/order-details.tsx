@@ -53,8 +53,8 @@ export const OrderDetails: React.FC<OrderDetailsProps> = ({
 	}
 
 	return (
-		<div className={styles.container}>
-			<p className={styles.orderNumber}>{order.number}</p>
+		<div className={styles.container} data-testid="order-details">
+			<p className={styles.orderNumber} data-testid="order-number">{order.number}</p>
 			<p className={`${styles.title} text text_type_main-medium mt-8`}>
 				идентификатор заказа
 			</p>
