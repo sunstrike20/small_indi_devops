@@ -80,7 +80,9 @@
 		"prepare": "husky install",
 		"commit": "npm run check && cz",
 		"test": "jest",
-		"cypress": "cypress open"
+		"cypress": "cypress open",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d dist"
 	},
 	"dependencies": {
 		"@reduxjs/toolkit": "^2.5.1",
@@ -108,6 +110,6 @@
 			"path": "./node_modules/cz-conventional-changelog"
 		}
 	},
-	"homepage": "./",
+	"homepage": "https://sunstrike20.github.io/small_indi_devops",
 	"packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
