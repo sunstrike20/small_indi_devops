@@ -5,6 +5,7 @@
 	"license": "MIT",
 	"devDependencies": {
 		"@babel/preset-env": "^7.26.8",
+		"gh-pages": "^6.3.0",
 		"@babel/preset-react": "^7.26.3",
 		"@babel/preset-typescript": "^7.26.0",
 		"@jest/globals": "^29.7.0",
@@ -13,6 +14,7 @@
 		"@testing-library/jest-dom": "^6.6.3",
 		"@testing-library/react": "^16.2.0",
 		"@testing-library/user-event": "^14.6.1",
+		"@types/jest": "^29.5.14",
 		"@types/js-cookie": "^3.0.6",
 		"@types/react": "^18.2.0",
 		"@types/react-dom": "^18.2.1",
@@ -78,7 +80,9 @@
 		"prepare": "husky install",
 		"commit": "npm run check && cz",
 		"test": "jest",
-		"cypress": "cypress open"
+		"cypress": "cypress open",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d dist"
 	},
 	"dependencies": {
 		"@reduxjs/toolkit": "^2.5.1",
@@ -106,6 +110,6 @@
 			"path": "./node_modules/cz-conventional-changelog"
 		}
 	},
-	"homepage": "./",
+	"homepage": "https://sunstrike20.github.io/small_indi_devops",
 	"packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

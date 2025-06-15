@@ -290,7 +290,7 @@ export const updateUser = createAsyncThunk<
 });
 
 // Initial state
-const initialState: AuthState = {
+export const initialState: AuthState = {
 	user: null,
 	accessToken: null,
 	isAuthenticated: false,

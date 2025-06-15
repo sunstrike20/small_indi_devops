@@ -82,16 +82,18 @@ const DraggableConstructorElement: React.FC<
 			className={styles.ingredient}
 			style={{ opacity }}
 			data-handler-id={handlerId}
-			data-test-id={`constructor-element-${index}`}>
+			data-testid="constructor-ingredient">
 			<div className={styles.dragIcon}>
 				<DragIcon type='primary' />
 			</div>
-			<ConstructorElement
-				text={item.name}
-				price={item.price}
-				thumbnail={item.image}
-				handleClose={() => handleDelete(item.uuid)}
-			/>
+			<div data-testid="remove-ingredient">
+				<ConstructorElement
+					text={item.name}
+					price={item.price}
+					thumbnail={item.image}
+					handleClose={() => handleDelete(item.uuid)}
+				/>
+			</div>
 		</div>
 	);
 };
