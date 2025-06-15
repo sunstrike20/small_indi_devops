@@ -1,5 +1,6 @@
 import {
 	authReducer,
+	initialState,
 	clearError,
 	resetAuthState,
 	setTokenRefreshAttempted,
@@ -30,15 +31,7 @@ const mockUser: User = {
 
 const mockAccessToken = 'mock-access-token';
 
-// Начальное состояние для тестов
-const initialState: AuthState = {
-	user: null,
-	accessToken: null,
-	isAuthenticated: false,
-	loading: false,
-	error: null,
-	tokenRefreshAttempted: false
-};
+
 
 // Мокаем console.log для тестов
 const consoleSpy = jest.spyOn(console, 'log').mockImplementation(() => {});

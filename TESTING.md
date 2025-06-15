@@ -48,7 +48,7 @@ npm test ingredientsSlice.test.ts
 
 ### Как запустить
 
-Сначала запусти приложение:
+Запуск приложения:
 ```bash
 npm start
 ```
