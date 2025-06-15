@@ -2,6 +2,6 @@ module.exports = {
 	mode: 'production',
 	devtool: false,
 	output: {
-		publicPath: '/' // Важно для React Router - все пути относительно корня
+		publicPath: '/small_indi_devops/' // Используем абсолютный путь для GitHub Pages
 	}
 };
