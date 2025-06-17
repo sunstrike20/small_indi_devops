@@ -44,8 +44,8 @@
   /*background: #1C1C21;*/
   border-radius: 88px 88px 40px 40px;
   padding: 16px 24px;
-  max-width: 568px;
-  width: 100%;
+  width: calc(100% - 40px); /* Вычитаем margin-left */
+  max-width: 528px; /* Уменьшаем max-width на 40px для соответствия ингредиентам */
   box-sizing: border-box;
   transition: transform 0.2s ease;
 }
@@ -102,8 +102,8 @@
   /*background: #1C1C21;*/
   border-radius: 40px;
   padding: 8px 24px 12px 12px;
-  max-width: 568px;
-  width: 100%;
+  width: calc(100% - 40px); /* Вычитаем margin-left от scrollArea */
+  max-width: 528px; /* Уменьшаем max-width на 40px */
   box-sizing: border-box;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
@@ -131,6 +131,7 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   max-height: 72px;
   font-size: 16px;

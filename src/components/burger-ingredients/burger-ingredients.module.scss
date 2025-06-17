@@ -124,6 +124,9 @@
     text-align: center;
     cursor: grab;
     padding: 16px;
+    width: 100%;
+    max-width: 272px; /* Фиксированная максимальная ширина */
+    box-sizing: border-box;
     transition: box-shadow 0.3s ease, opacity 0.2s ease, transform 0.2s ease;
 }
 
@@ -161,6 +164,8 @@
 
 .name {
     min-height: 48px;
+    width: 100%;
+    max-width: 240px; /* Ограничиваем ширину текста */
     text-align: center;
     font-family: 'JetBrains Mono', monospace;
     font-style: normal;
@@ -168,6 +173,8 @@
     font-size: 16px;
     line-height: 24px;
     color: #F2F2F3;
+    word-wrap: break-word; /* Перенос длинных слов */
+    overflow-wrap: break-word; /* Дополнительная поддержка переноса */
 }
 
 .count {

@@ -27,7 +27,7 @@ export const Preloader: React.FC<PreloaderProps> = ({
 	}, [loading]);
 
 	return (
-		<div className={styles.preloaderContainer}>
+		<div className={styles.preloaderContainer} data-testid={error ? "error-message" : "loading-message"}>
 			{loading && (
 				<div className={styles.loaderWrapper}>
 					<ClipLoader color={color} size={size} loading={loading} />

@@ -34,7 +34,7 @@ const DraggableIngredient: React.FC<DraggableIngredientProps> = ({
 			ref={ref}
 			className={`${styles.card} ${isDragging ? styles.dragging : ''}`}
 			onClick={onClick}
-			data-test-id={`ingredient-${ingredient._id}`}>
+			data-testid="ingredient-item">
 			{count > 0 && <div className={styles.count}>{count}</div>}
 			<img src={ingredient.image} alt={ingredient.name} />
 			<div className={styles.price}>
